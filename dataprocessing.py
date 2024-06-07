@@ -51,8 +51,8 @@ model = Word2Vec(sentences = tokenized_data, vector_size = 100, window = 5, min_
 print("3")
 
 # 완성된 임베딩 매트릭스의 크기 확인
-model.wv.vectors.shape
+print(model.wv.vectors.shape)
 
 print(model.wv.most_similar("바나나"))
 
-print(model.wv.most_similar("안녕"))
+print(model.wv.most_similar("인간"))
