@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 from gensim.models.word2vec import Word2Vec
 from konlpy.tag import Okt
 
+cnt = 0
+
 
 targetJson = open('remon_01v_without_19.json','r',encoding='UTF-8')
 
@@ -33,6 +35,7 @@ for i in range(len(train_data['conversations'])):
         stopwords_removed_sentence = [word for word in tokenized_sentence if not word in stopwords] # 불용어 제거
         tokenized_data.append(stopwords_removed_sentence)
         print("1")
+        cnt+=1
 
 # 리뷰 길이 분포 확인
 print('문장의 최대 길이 :',max(len(review) for review in tokenized_data))
@@ -42,17 +45,19 @@ plt.xlabel('length of samples')
 plt.ylabel('number of samples')
 plt.show()
 
-from gensim.models import Word2Vec
+print(f"총 문장 갯수: {cnt}")
 
-print("2")
+# from gensim.models import Word2Vec
 
-model = Word2Vec(sentences = tokenized_data, vector_size = 100, window = 5, min_count = 5, workers = 4, sg = 0)
+# print("2")
 
-print("3")
+# model = Word2Vec(sentences = tokenized_data, vector_size = 100, window = 5, min_count = 5, workers = 4, sg = 0)
 
-# 완성된 임베딩 매트릭스의 크기 확인
-print(model.wv.vectors.shape)
+# print("3")
 
-print(model.wv.most_similar("바나나"))
+# # 완성된 임베딩 매트릭스의 크기 확인
+# print(model.wv.vectors.shape)
 
-print(model.wv.most_similar("인간"))
+# print(model.wv.most_similar("바나나"))
+
+# print(model.wv.most_similar("인간"))
