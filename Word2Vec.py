@@ -34,8 +34,16 @@ for i in range(len(train_data['conversations'])):
         tokenized_sentence = okt.morphs(sentence, stem=True) # 토큰화
         stopwords_removed_sentence = [word for word in tokenized_sentence if not word in stopwords] # 불용어 제거
         tokenized_data.append(stopwords_removed_sentence)
-        print("1")
+        print(f"tokenizing{cnt}...")
         cnt+=1
+
+from gensim.models import Word2Vec
+
+print("making Model...")
+
+model = Word2Vec(sentences = tokenized_data, vector_size = 100, window = 5, min_count = 5, workers = 4, sg = 0)
+
+print("Done")
 
 # 리뷰 길이 분포 확인
 print('문장의 최대 길이 :',max(len(review) for review in tokenized_data))
@@ -45,19 +53,10 @@ plt.xlabel('length of samples')
 plt.ylabel('number of samples')
 plt.show()
 
+# 완성된 임베딩 매트릭스의 크기 확인
+
 print(f"총 문장 갯수: {cnt}")
 
-# from gensim.models import Word2Vec
-
-# print("2")
-
-# model = Word2Vec(sentences = tokenized_data, vector_size = 100, window = 5, min_count = 5, workers = 4, sg = 0)
-
-# print("3")
-
-# # 완성된 임베딩 매트릭스의 크기 확인
-# print(model.wv.vectors.shape)
-
-# print(model.wv.most_similar("바나나"))
-
-# print(model.wv.most_similar("인간"))
+print(model.wv.vectors.shape)
+print(model.wv.most_similar("바나나"))
+print(model.wv.most_similar("인간"))
