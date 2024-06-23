@@ -18,7 +18,7 @@ for i in range(len(train_data['conversations'])):
     for j in range(len(train_data['conversations'][i])):
         train_data_replaced = str(train_data['conversations'][i][j]['value']).replace("[^ㄱ-ㅎㅏ-ㅣ가-힣 ]","") # 정규식 이용 한글제외 문자 제거
         train_data['conversations'][i][j]['value'] = train_data_replaced
-        print("0")
+        print("Making data list...")
         
 
 # 불용어 정의
