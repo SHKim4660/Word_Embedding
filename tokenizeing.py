@@ -12,7 +12,7 @@ def data_tokenizeing(path):
 
     if not train_data.isnull().values.any(): # 결측치 존재여부 확인
         pass
-    else: print("결측치 존재.. 제거함"); 
+    else: print("결측치 존재.. 제거함")
          
 
     train_data_list = []
@@ -41,7 +41,7 @@ def data_tokenizeing(path):
             print("data tokenizing...")
 
     # 길이 분포 확인
-    print(f'Toknizing된 데이터 수{cnt}')
+    print(f'Toknizing된 데이터 수 : {cnt}')
     print('문장의 최대 길이 :',max(len(review) for review in tokenized_data))
     print('문장의 평균 길이 :',sum(map(len, tokenized_data))/len(tokenized_data))
     plt.hist([len(review) for review in tokenized_data], bins=50)
