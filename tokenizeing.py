@@ -38,7 +38,7 @@ def data_tokenizeing(path):
             tokenized_sentence = okt.morphs(sentence, stem=True) # 토큰화
             stopwords_removed_sentence = [word for word in tokenized_sentence if not word in stopwords] # 불용어 제거
             tokenized_data.append(stopwords_removed_sentence)
-            print("data tkenizing...")
+            print("data tokenizing...")
 
     # 길이 분포 확인
     print(f'Toknizing된 데이터 수{cnt}')
